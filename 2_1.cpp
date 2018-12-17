@@ -10,7 +10,7 @@
 #include<bits/stdc++.h>
 int main()
 {
-    long  i,mi,si;//i-счетчик
+    long  i,mi,si;
     std::vector<long>mass,strength;
     while(std::cin>>mi>>si)
     {
