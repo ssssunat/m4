@@ -5,7 +5,7 @@
  */
 #include <bits/stdc++.h>
 
-using namespace std;
+using std::vector;
 
 long long way(int v, vector<int>& subtree_node_number, vector<vector<int> >& g) {
     int len = 0;
@@ -21,15 +21,15 @@ long long way(int v, vector<int>& subtree_node_number, vector<vector<int> >& g) 
 int main() {
     // Ввод данных
     int n;
-    cin >> n;
+    std::cin >> n;
 
     vector<vector<int> > g(n);
     vector<int> pred(n);
     int a, b;
     for (int i = 0; i < n - 1; i++) {
-        cin >> a >> b;
+        std::cin >> a >> b;
         if (a > b)
-            swap(a, b);
+            std::swap(a, b);
         g[a].push_back(b);
         pred[b] = a;
     }
@@ -41,12 +41,12 @@ int main() {
     // Предподсчет расстояния и количества вершин
     vector<long long > rast(n);
     rast[0] = way(0, subtree_node_number, g);
-    cout << rast[0] << '\n';
+    std::cout << rast[0] << '\n';
 
     // Пересчет ответа
     for (int v = 1; v < n; ++v) {
         rast[v] = rast[pred[v]] - subtree_node_number[v] + (n - subtree_node_number[v]);
-        cout << rast[v] << '\n';
+        std::cout << rast[v] << '\n';
     }
 
     return 0;
