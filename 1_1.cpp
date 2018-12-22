@@ -1,14 +1,13 @@
-/* Реализуйте структуру данных типа “множество строк” на основе динамической хеш-таблицы с открытой адресацией. 
-  Хранимые строки непустые и состоят из строчных латинских букв. 
+/* Реализуйте структуру данных типа “множество строк” на основе динамической хеш-таблицы с открытой адресацией.
+  Хранимые строки непустые и состоят из строчных латинских букв.
   Хеш-функция строки должна быть реализована с помощью вычисления значения многочлена методом Горнера.
   Начальный размер таблицы должен быть равным 8-ми. Перехеширование выполняйте при добавлении элементов в случае,
   когда коэффициент заполнения таблицы достигает 3/4.
   Структура данных должна поддерживать операции добавления строки в множество,
-  удаления строки из множества и проверки принадлежности данной строки множеству.  
+  удаления строки из множества и проверки принадлежности данной строки множеству.
   1_1. Для разрешения коллизий используйте квадратичное пробирова.*/
 #include <bits/stdc++.h>
 #include <functional>
-using namespace std;
 
 #define fi first
 #define se second
@@ -18,14 +17,14 @@ const int EMPTY = 0;
 const int RESERVED = 1;
 const int DELETED = 2;
 
-hash<string> hsh;
+std::hash<std::string> hsh;
 
 struct hash_table {
     hash_table(int capacity = 8) : t(capacity) {}
 
     ~hash_table() {}
 
-    bool add(const string& val) {
+    bool add(const std::string& val) {
         if (get_index(val) != -1) {
             return false;
         }
@@ -45,11 +44,11 @@ struct hash_table {
         return true;
     }
 
-    bool contains(const string& val) {
+    bool contains(const std::string& val) {
         return get_index(val) != -1;
     }
 
-    bool remove(const string& val) {
+    bool remove(const std::string& val) {
         int h = get_index(val);
         if (h != -1) {
             t[h] = {"", DELETED};
@@ -67,10 +66,10 @@ struct hash_table {
             }
         }
         swap(t, copy.t);
-        swap(size, copy.size);
+        std::swap(size, copy.size);
     }
 
-    int get_index(const string &val) {
+    int get_index(const std::string &val) {
         int h = hsh(val) % t.size();
         int64_t i = 1;
         while (t[h].se != EMPTY) {
@@ -83,24 +82,25 @@ struct hash_table {
         return -1;
     }
 
-    vector<pair<string, int > > t;
+    std::vector<std::pair<std::string, int > > t;
     int size = 0;
 };
 
 int main() {
     char c;
-    string s;
+    std::string s;
     hash_table t;
-    string res[] = {"FAIL\n", "OK\n"};
-    while (cin >> c >> s) {
+    std::string res[] = {"FAIL\n", "OK\n"};
+    while (std::cin >> c >> s) {
         switch (c) {
-            case '+': cout << res[t.add(s)];
+            case '+': std::cout << res[t.add(s)];
                 break;
-            case '-': cout << res[t.remove(s)];
+            case '-': std::cout << res[t.remove(s)];
                 break;
-            case '?': cout << res[t.contains(s)];
+            case '?': std::cout << res[t.contains(s)];
                 break;
 
         }
     }
+    free(res);
 }
