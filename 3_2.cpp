@@ -1,4 +1,4 @@
-/**
+/*
 Дано N кубиков. Требуется определить каким количеством способов можно выстроить из этих кубиков
 пирамиду.
 Формат входных данных:
@@ -10,9 +10,7 @@
 */
 
 #include <bits/stdc++.h>
-
-using namespace std;
-
+using std::vector;
 long long calc(int n, int k, vector< vector< long long > >& dp) {
     if ((n < 0)||(k < 0)) return 0;
     if(k == 1) {
@@ -21,7 +19,6 @@ long long calc(int n, int k, vector< vector< long long > >& dp) {
     }
     if(n <= 2) return 1;
 
-    // Если уже ранее считали ответ для n и k, то используем найденный ответ
     if(dp[n][k] >= 0) return dp[n][k];
 
     dp[n][k] =  calc(n, k - 1, dp) + calc(n - k, k - 1, dp);
@@ -31,18 +28,18 @@ long long calc(int n, int k, vector< vector< long long > >& dp) {
 
 void solve(){
     int m, i, j;
-    cin >> m;
+    std::cin >> m;
 
     vector< vector< long long > > dp (m + 1);
 
     for (i = 0; i < m + 1; i++) {
         dp[i] = vector<long long>(m + 1, 0);
-    	
+
         for (j = 0; j < m + 1; j++) {
             dp[i][j] = -1;
         }
     }
-    cout << calc(m, m, dp) << endl;
+    std::cout << calc(m, m, dp) << std::endl;
 }
 
 int main() {
@@ -53,3 +50,4 @@ int main() {
     }
     return 0;
 }
+
