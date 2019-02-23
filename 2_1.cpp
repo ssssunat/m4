@@ -10,25 +10,26 @@
 #include<bits/stdc++.h>
 int main()
 {
-    long  i,mi,si;
-    std::vector<long>mass,strength;
-    while(std::cin>>mi>>si)
+    std::vector<int>str;//strength-сила)
+    std::vector<int>mass;
+    int a,b;
+    while(std::cin>>a>>b)
     {
-        mass.push_back(mi);
-        strength.push_back(si);
+      mass.push_back(a);
+      str.push_back(b);
     }
-    std::sort(mass.begin(), mass.end());
-    std::sort(strength.begin(), strength.end());
-    long Mass = mass[0],
-         Height = 1;
-    for(i=1;i<mass.size();i++)
+    std::sort(str.begin(),str.end());
+    std::sort(mass.begin(),mass.end());
+    int height=1;
+    int weight=mass[0];
+    for(int i=1;i<str.size();i++)
     {
-         if(strength[i] >= Mass)
-         {
-            Mass += mass[i];
-            Height++;
-         }
+       if(str[i]>=weight)
+       {
+          weight=weight+mass[i];
+          height++;
+       }
     }
-    std::cout<<Height;
+    std::cout<<height;
     return 0;
 }
