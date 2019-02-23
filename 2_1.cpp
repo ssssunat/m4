@@ -10,26 +10,21 @@
 #include<bits/stdc++.h>
 int main()
 {
-    std::vector<int>str;//strength-сила)
-    std::vector<int>mass;
-    int a,b;
+    std::vector< std::pair<int,int> >atl;//atl-атлет
+    int a,b;//a-масса,b-сила
     while(std::cin>>a>>b)
+        atl.push_back(std::make_pair(a,b));
+    std::sort(atl.begin(),atl.end());
+    int mass=0,h=0;//h-высота,
+    int n=atl.size();
+    for(int i=0;i<n;i++)
     {
-      mass.push_back(a);
-      str.push_back(b);
+        if(atl[i].second>=mass)
+        {
+            h++;
+            mass=mass+atl[i].first;
+        }
     }
-    std::sort(str.begin(),str.end());
-    std::sort(mass.begin(),mass.end());
-    int height=1;
-    int weight=mass[0];
-    for(int i=1;i<str.size();i++)
-    {
-       if(str[i]>=weight)
-       {
-          weight=weight+mass[i];
-          height++;
-       }
-    }
-    std::cout<<height;
+    std::cout<<h;
     return 0;
 }
