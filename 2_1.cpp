@@ -8,13 +8,17 @@
 
 
 #include<bits/stdc++.h>
+
 int main()
 {
     std::vector< std::pair<int,int> >atl;//atl-атлеты
     int a,b;//a-масса,b-сила
+ 
     while(std::cin>>a>>b)
         atl.push_back(std::make_pair(a,b));
+ 
     std::sort(atl.begin(),atl.end());
+ 
     int mass=0,h=0;//h-высота,
     int n=atl.size();
     for(int i=0;i<n;i++)
