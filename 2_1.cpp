@@ -10,7 +10,7 @@
 #include<bits/stdc++.h>
 int main()
 {
-    std::vector< std::pair<int,int> >atl;//atl-атлет
+    std::vector< std::pair<int,int> >atl;//atl-атлеты
     int a,b;//a-масса,b-сила
     while(std::cin>>a>>b)
         atl.push_back(std::make_pair(a,b));
